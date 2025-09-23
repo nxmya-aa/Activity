@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+    int n=0,st,pt,x=0;
+    int yesorno;
+    printf("Hello! Do you want a sleep timer for your music player?\nChoose 1 or 2:\n1.Yes\n2.No\n");
+    scanf("%d",&yesorno);
+    switch(yesorno){
+        case 1:
+            n=1;
+            break;
+        case 2:
+            n=0;
+            break;
+            exit(0);
+        default:
+            printf("Invalid input! ");
+            break;
+    }
+    if(n==1){
+        printf("How much duration do you want your sleep timer to be(in minutes)?(5/10/15/30/45/60): ");
+        scanf("%d",&st);
+        if(st==5||st==10||st==15||st==30||st==45||st==60){
+            printf("Enter your music play time(in minutes): ");
+            scanf("%d",&pt);
+            if(pt>=st){
+                x=1;
+            }
+            else{
+                x=0;
+            }
+            if(x==1){
+                printf("Your music will be turned off as you have exceeded the time limit");
+            }
+            else{
+                printf("Your music will keep playing as you have not exceeded the time limit");
+            }
+        }
+        else{
+            printf("Invalid choice");
+            
+        }
+    }
+    else{
+        printf("Okay bye!");
+    }
+    return 0;
+}
