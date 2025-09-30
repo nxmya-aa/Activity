@@ -1,0 +1,36 @@
+#include <stdio.h>
+int main() {
+    float w; 
+    float r; 
+    int gender;
+    printf("Enter your gender\n1.Male\n2.Female\n:");
+    scanf("%d", &gender);
+    switch(gender){
+        case 1:
+            r=3.7;
+            printf("Recommended intake for males: %.1f liters/day\n", r);
+            break;
+        case 2:
+            r=2.7;
+            printf("Recommended intake for females: %.1f liters/day\n", r);
+            break;
+        default:
+            printf("Invalid choice! Please restart and enter 1 or 2.\n");
+            return 0;
+    }
+    printf("Enter how much water you drink in a day (in liters): ");
+    scanf("%f", &w);
+    if(w<r){
+        printf("You should drink more water to stay hydrated.\n");
+    }
+    else if(w==r){
+        printf("Good job! You are well hydrated.\n");
+    }
+    else if(w>r&&w<=r+1){
+        printf("Careful! You may be drinking a bit more water than necessary.\n");
+    }
+    else{
+        printf("Warning! You are drinking too much water! Overhydration can cause problems in the long run.");
+    }
+return 0;
+} 
