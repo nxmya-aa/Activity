@@ -1,0 +1,48 @@
+#include <stdio.h>
+struct Flight{
+    char flightName[50];
+    int flightNumber;
+    int passengers;
+    char source[30];
+    char destination[30];
+};
+int main(){
+    struct Flight f[5];
+    int i,j;
+    struct Flight temp;
+    printf("--------- Enter Flight Details ---------\n");
+    for(i=0;i<5;i++){
+        printf("\nFlight %d:\n",i+1);
+        printf("Enter Flight Name: ");
+        scanf(" %[^\n]",f[i].flightName);
+        printf("Enter Flight Number: ");
+        scanf("%d",&f[i].flightNumber);
+        printf("Enter Number of Passengers: ");
+        scanf("%d",&f[i].passengers);
+        printf("Enter Source: ");
+        scanf(" %[^\n]",f[i].source);
+        printf("Enter Destination: ");
+        scanf(" %[^\n]",f[i].destination);
+    }
+    for(i=0;i<5;i++){
+        for(j=i+1;j<5;j++){
+            if(f[i].passengers<f[j].passengers){
+                temp=f[i];
+                f[i]=f[j];
+                f[j]=temp;
+            }
+        }
+    }
+    printf("\n=========================================\n");
+    printf("     FLIGHT DETAILS (Sorted by Passengers)\n");
+    printf("=========================================\n");
+    for(i=0;i<5;i++){
+        printf("\nFlight Name      : %s", f[i].flightName);
+        printf("\nFlight Number    : %d", f[i].flightNumber);
+        printf("\nPassengers       : %d", f[i].passengers);
+        printf("\nSource           : %s", f[i].source);
+        printf("\nDestination      : %s", f[i].destination);
+        printf("\n-----------------------------------------\n");
+    }
+    return 0;
+}
