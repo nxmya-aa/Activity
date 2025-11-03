@@ -43,7 +43,7 @@ int main(){
                         scanf(" %[^\n]",f[count].destination);
                         count++;
                     }
-                    printf("\nd flight(s) added successfully!\n", n);
+                    printf("\n%d flight(s) added successfully!\n", n);
                 }
                 break;
             case 2:
