@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <string.h>
+struct Flight{
+    char flightName[50];
+    int flightNumber;
+    int passengers;
+    char source[30];
+    char destination[30];
+};
+int main(){
+    struct Flight f[50],temp;
+    int choice,count=0,i,j,found=0,searchNum,n;
+    do{
+        printf("\n==============================");
+        printf("\n   FLIGHT DATABASE SYSTEM");
+        printf("\n==============================");
+        printf("\n1. Add Entry");
+        printf("\n2. Display Records");
+        printf("\n3. Sort Records (by Passengers)");
+        printf("\n4. Search Record (by Flight Number)");
+        printf("\n5. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d",&choice);
+        switch (choice){
+            case 1:
+                printf("\nHow many flight entries do you want to add? ");
+                scanf("%d",&n);
+                if (count+n>50){
+                    printf("\nNot enough space! You can only add up to %d more records.\n",50-count);
+                }
+                else{
+                    for(i=0;i<n;i++){
+                        printf("\n--- Flight %d ---\n",count+1);
+                        printf("Enter Flight Name: ");
+                        scanf(" %[^\n]",f[count].flightName);
+                        printf("Enter Flight Number: ");
+                        scanf("%d",&f[count].flightNumber);
+                        printf("Enter Number of Passengers: ");
+                        scanf("%d",&f[count].passengers);
+                        printf("Enter Source: ");
+                        scanf(" %[^\n]",f[count].source);
+                        printf("Enter Destination: ");
+                        scanf(" %[^\n]",f[count].destination);
+                        count++;
+                    }
+                    printf("\nd flight(s) added successfully!\n", n);
+                }
+                break;
+            case 2:
+                if(count==0){
+                    printf("\nNo records to display!\n");
+                }
+                else{
+                    printf("\n=========================================\n");
+                    printf("       FLIGHT DETAILS\n");
+                    printf("=========================================\n");
+                    for(i=0;i<count;i++){
+                        printf("\nFlight Name      : %s", f[i].flightName);
+                        printf("\nFlight Number    : %d", f[i].flightNumber);
+                        printf("\nPassengers       : %d", f[i].passengers);
+                        printf("\nSource           : %s", f[i].source);
+                        printf("\nDestination      : %s", f[i].destination);
+                        printf("\n-----------------------------------------\n");
+                    }
+                }
+                break;
+            case 3:
+                if(count==0){
+                    printf("\nNo records to sort!\n");
+                }
+                else{
+                    for(i=0;i<count;i++){
+                        for(j=i+1;j<count;j++){
+                            if(f[i].passengers<f[j].passengers){
+                                temp=f[i];
+                                f[i]=f[j];
+                                f[j]=temp;
+                            }
+                        }
+                    }
+                    printf("\nRecords sorted in descending order by passengers.\n");
+                }
+                break;
+            case 4:
+                if(count==0){
+                    printf("\nNo records available to search!\n");
+                }
+                else{
+                    printf("\nEnter Flight Number to search: ");
+                    scanf("%d",&searchNum);
+                    found=0;
+                    for (i=0;i<count;i++){
+                        if (f[i].flightNumber==searchNum){
+                            printf("\nRecord Found:\n");
+                            printf("\nFlight Name      : %s", f[i].flightName);
+                            printf("\nFlight Number    : %d", f[i].flightNumber);
+                            printf("\nPassengers       : %d", f[i].passengers);
+                            printf("\nSource           : %s", f[i].source);
+                            printf("\nDestination      : %s", f[i].destination);
+                            printf("\n-----------------------------------------\n");
+                            found=1;
+                            break;
+                        }
+                    }
+                    if(!found)
+                        printf("\nFlight not found!\n");
+                }
+                break;
+            case 5:
+                printf("\nExiting program. Goodbye!\n");
+                break;
+            default:
+                printf("\nInvalid choice! Please try again.\n");
+        }
+    }while(choice!=5);
+    return 0;
+}
