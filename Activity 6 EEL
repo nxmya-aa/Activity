@@ -1,0 +1,26 @@
+#include <stdio.h>
+float populationGrowth(float *pop,float growthRate,int years){
+    if (years==0)
+        return *pop;
+    *pop=*pop+(*pop*growthRate/100);
+    return populationGrowth(pop,growthRate,years-1);
+}
+int main(){
+    float population,growthRate;
+    int years;
+    printf("Enter the current population: ");
+    scanf("%f", &population);
+    printf("Enter annual growth rate (in %%): ");
+    scanf("%f", &growthRate);
+    printf("Enter number of years: ");
+    scanf("%d",&years);
+    float finalPopulation=populationGrowth(&population,growthRate,years);
+    printf("\n--------------------------------------\n");
+    printf("Initial Population : %.2f",population/(1+growthRate/100));
+    printf("\nGrowth Rate         : %.2f%%",growthRate);
+    printf("\nYears               : %d",years);
+    printf("\n--------------------------------------");
+    printf("\nFinal Population    : %.2f\n",finalPopulation);
+    printf("--------------------------------------\n");
+    return 0;
+}
